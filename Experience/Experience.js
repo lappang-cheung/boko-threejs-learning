@@ -2,6 +2,8 @@ import * as THREE from "three"
 
 import Sizes from './Utils/Sizes'
 import Time from './Utils/Time'
+import Resources from './Utils/Resources'
+import Assets from './Utils/Assets'
 
 import Camera from './Camera'
 
@@ -22,6 +24,7 @@ export default class Experience {
     this.sizes = new Sizes()
     this.camera = new Camera()
     this.renderer = new Renderer()
+    this.resources = new Resources(Assets)
 
     this.world = new World()
 
