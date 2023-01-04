@@ -34,8 +34,21 @@ export default class Camera {
       -100,
       100
     )
+
+    this.perspectiveCamera.position.z = 9
+    this.perspectiveCamera.position.y = 7
+    this.perspectiveCamera.position.x = 0
+
     this.scene.add(this.orthographicCamera)
-    this.perspectiveCamera.position.z = 5
+
+    const size = 10
+    const division = 10
+
+    const gridHelper = new THREE.GridHelper(size, division)
+    this.scene.add(gridHelper)
+
+    const axesHelper = new THREE.AxesHelper(10)
+    this.scene.add(axesHelper)
   }
 
   setOrbitalControls() {
