@@ -35,9 +35,9 @@ export default class Camera {
       100
     )
 
-    this.perspectiveCamera.position.z = 9
-    this.perspectiveCamera.position.y = 7
-    this.perspectiveCamera.position.x = 0
+    this.perspectiveCamera.position.z = 12
+    this.perspectiveCamera.position.y = 14
+    this.perspectiveCamera.position.x = 29
 
     this.scene.add(this.orthographicCamera)
 
