@@ -25,14 +25,13 @@ export default class Camera {
   }
 
   createOrthographicCamera () {
-    this.frustrum = 5
-    this.orthographicCamera = new THREE.OrthographicCamera(
+        this.orthographicCamera = new THREE.OrthographicCamera(
       (-this.sizes.aspect * this.sizes.frustrum) / 2,
       (this.sizes.aspect * this.sizes.frustrum) / 2,
       this.sizes.frustrum / 2,
       -this.sizes.frustrum / 2,
-      -100,
-      100
+      -10,
+      10
     )
 
     this.perspectiveCamera.position.z = 12
@@ -41,8 +40,11 @@ export default class Camera {
 
     this.scene.add(this.orthographicCamera)
 
-    const size = 10
-    const division = 10
+    this.helper = new THREE.CameraHelper(this.orthographicCamera)
+    this.scene.add(this.helper)
+
+    const size = 20
+    const division = 20
 
     const gridHelper = new THREE.GridHelper(size, division)
     this.scene.add(gridHelper)
@@ -54,7 +56,7 @@ export default class Camera {
   setOrbitalControls() {
     this.controls = new OrbitControls(this.perspectiveCamera, this.canvas)
     this.controls.enableDamping = true
-    this.controls.enableZoom = true
+    this.controls.enableZoom = false
   }
 
   resize() {
@@ -71,5 +73,10 @@ export default class Camera {
 
   update() {
     this.controls.update()
+
+    this.helper.matrixWorldNeedsUpdate = true
+    this.helper.update()
+    this.helper.position.copy(this.orthographicCamera.position)
+    this.helper.rotation.copy(this.orthographicCamera.rotation)
   }
 }
